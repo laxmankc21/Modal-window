@@ -1,32 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Modal window</title>
-  </head>
-  <body>
-    <button class="show-modal">Show modal 1</button>
-    <button class="show-modal">Show modal 2</button>
-    <button class="show-modal">Show modal 3</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepalCuts - Premium Home Barber Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cut"></i>
+                <span>NepalCuts</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#cities">Cities</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#barber-panel" class="barber-login">Barber Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <div class="modal hidden">
-      <button class="close-modal">&times;</button>
-      <h1>I'm a modal window 😍</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Premium Home Barber Service Across Nepal</h1>
+            <p>Professional haircuts and grooming services delivered to your doorstep in major cities of Nepal</p>
+            <button class="cta-button" onclick="showBookingModal()">
+                <i class="fas fa-calendar-alt"></i>
+                Book Your Cut Now
+            </button>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <h3 id="happy-customers">1,250+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat">
+                <h3 id="expert-barbers">50+</h3>
+                <p>Expert Barbers</p>
+            </div>
+            <div class="stat">
+                <h3 id="cities-served">15+</h3>
+                <p>Cities Served</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Hair Cut</h3>
+                    <p>Professional haircuts with modern styles</p>
+                    <span class="price">NPR 500-800</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Beard Trim</h3>
+                    <p>Precise beard trimming and styling</p>
+                    <span class="price">NPR 300-500</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Face Care</h3>
+                    <p>Face wash, massage, and skin care</p>
+                    <span class="price">NPR 400-600</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Premium Package</h3>
+                    <p>Complete grooming experience</p>
+                    <span class="price">NPR 1200-1800</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section id="cities" class="cities">
+        <div class="container">
+            <h2>Cities We Serve</h2>
+            <div class="cities-grid">
+                <div class="city-card" data-city="kathmandu">
+                    <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop" alt="Kathmandu">
+                    <div class="city-info">
+                        <h3>Kathmandu</h3>
+                        <p><span class="barber-count">15</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">3</span> people</p>
+                    </div>
+                </div>
+                <div class="city-card" data-city="pokhara">
+                    <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=300&h=200&fit=crop" alt="Pokhara">
+                    <div class="city-info">
+                        <h3>Pokhara</h3>
+                        <p><span class="barber-count">8</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">1</span> people</p>
+                    </div>
+                </div>
+                <div class="city-card" data-city="lalitpur">
+                    <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300&h=200&fit=crop" alt="Lalitpur">
+                    <div class="city-info">
+                        <h3>Lalitpur</h3>
+                        <p><span class="barber-count">10</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">2</span> people</p>
+                    </div>
+                </div>
+                <div class="city-card" data-city="bhaktapur">
+                    <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop" alt="Bhaktapur">
+                    <div class="city-info">
+                        <h3>Bhaktapur</h3>
+                        <p><span class="barber-count">6</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">0</span> people</p>
+                    </div>
+                </div>
+                <div class="city-card" data-city="biratnagar">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="Biratnagar">
+                    <div class="city-info">
+                        <h3>Biratnagar</h3>
+                        <p><span class="barber-count">5</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">1</span> people</p>
+                    </div>
+                </div>
+                <div class="city-card" data-city="chitwan">
+                    <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop" alt="Chitwan">
+                    <div class="city-info">
+                        <h3>Chitwan</h3>
+                        <p><span class="barber-count">4</span> Barbers Available</p>
+                        <p class="queue-info">Current Queue: <span class="queue-count">2</span> people</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendation Section -->
+    <section id="ai-recommendations" class="ai-section">
+        <div class="container">
+            <h2>AI-Powered Style Recommendations</h2>
+            <div class="ai-content">
+                <div class="ai-feature">
+                    <div class="ai-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Style Matching</h3>
+                    <p>Our AI analyzes your face shape, hair type, and preferences to recommend the perfect style</p>
+                    <button class="ai-button" onclick="showAIModal()">Try AI Stylist</button>
+                </div>
+                <div class="ai-preview">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Upload your photo for AI analysis</p>
+                        <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="ai-results" id="aiResults" style="display: none;">
+                        <h4>AI Recommendations:</h4>
+                        <div class="style-suggestions" id="styleSuggestions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Your Home Service</h2>
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="customerName">Full Name *</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerCity">City *</label>
+                    <select id="customerCity" required>
+                        <option value="">Select City</option>
+                        <option value="kathmandu">Kathmandu</option>
+                        <option value="pokhara">Pokhara</option>
+                        <option value="lalitpur">Lalitpur</option>
+                        <option value="bhaktapur">Bhaktapur</option>
+                        <option value="biratnagar">Biratnagar</option>
+                        <option value="chitwan">Chitwan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Full Address *</label>
+                    <textarea id="customerAddress" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">Service Type *</label>
+                    <select id="serviceType" required>
+                        <option value="">Select Service</option>
+                        <option value="haircut">Hair Cut (NPR 500-800)</option>
+                        <option value="beard">Beard Trim (NPR 300-500)</option>
+                        <option value="facecare">Face Care (NPR 400-600)</option>
+                        <option value="premium">Premium Package (NPR 1200-1800)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date *</label>
+                    <input type="date" id="preferredDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Time *</label>
+                    <select id="preferredTime" required>
+                        <option value="">Select Time</option>
+                        <option value="08:00">8:00 AM</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                    </select>
+                </div>
+                <div class="queue-status">
+                    <h4>Current Queue Status</h4>
+                    <div class="queue-display">
+                        <span class="queue-number" id="queuePosition">You will be #<span id="positionNumber">1</span> in queue</span>
+                        <span class="estimated-time" id="estimatedTime">Estimated wait: 30 minutes</span>
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-calendar-check"></i>
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
     </div>
-    <div class="overlay hidden"></div>
+
+    <!-- AI Style Modal -->
+    <div id="aiModal" class="modal hidden">
+        <div class="modal-content ai-modal-content">
+            <span class="close-modal" onclick="closeAIModal()">&times;</span>
+            <h2>AI Style Consultant</h2>
+            <div class="ai-form">
+                <div class="photo-upload-section">
+                    <h3>Upload Your Photo</h3>
+                    <div class="upload-container">
+                        <input type="file" id="aiPhotoUpload" accept="image/*">
+                        <div class="upload-preview" id="uploadPreview"></div>
+                    </div>
+                </div>
+                <div class="style-preferences">
+                    <h3>Style Preferences</h3>
+                    <div class="preference-group">
+                        <label>Hair Length Preference:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="hairLength" value="short"> Short</label>
+                            <label><input type="radio" name="hairLength" value="medium"> Medium</label>
+                            <label><input type="radio" name="hairLength" value="long"> Long</label>
+                        </div>
+                    </div>
+                    <div class="preference-group">
+                        <label>Style Type:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="styleType" value="classic"> Classic</label>
+                            <label><input type="radio" name="styleType" value="modern"> Modern</label>
+                            <label><input type="radio" name="styleType" value="trendy"> Trendy</label>
+                        </div>
+                    </div>
+                </div>
+                <button class="ai-analyze-button" onclick="analyzeWithAI()">
+                    <i class="fas fa-magic"></i>
+                    Analyze & Recommend
+                </button>
+                <div class="ai-recommendations-display" id="aiRecommendationsDisplay"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barber Dashboard Modal -->
+    <div id="barberModal" class="modal hidden">
+        <div class="modal-content barber-modal-content">
+            <span class="close-modal" onclick="closeBarberModal()">&times;</span>
+            <h2>Barber Dashboard</h2>
+            <div class="barber-login" id="barberLogin">
+                <form id="barberLoginForm">
+                    <div class="form-group">
+                        <label for="barberId">Barber ID</label>
+                        <input type="text" id="barberId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="barberPassword">Password</label>
+                        <input type="password" id="barberPassword" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div class="barber-dashboard hidden" id="barberDashboard">
+                <div class="dashboard-header">
+                    <h3>Welcome, <span id="barberName">Barber</span></h3>
+                    <button class="logout-btn" onclick="logoutBarber()">Logout</button>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h4>Today's Bookings</h4>
+                        <span class="stat-number" id="todayBookings">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Queue Length</h4>
+                        <span class="stat-number" id="queueLength">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Earnings Today</h4>
+                        <span class="stat-number">NPR <span id="todayEarnings">0</span></span>
+                    </div>
+                </div>
+                <div class="bookings-list">
+                    <h4>Upcoming Appointments</h4>
+                    <div id="appointmentsList" class="appointments-container"></div>
+                </div>
+                <div class="status-controls">
+                    <h4>Status Controls</h4>
+                    <button class="status-btn available" onclick="setStatus('available')">Available</button>
+                    <button class="status-btn busy" onclick="setStatus('busy')">Busy</button>
+                    <button class="status-btn offline" onclick="setStatus('offline')">Offline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay hidden" id="overlay"></div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer" class="message-container"></div>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
