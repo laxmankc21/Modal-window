@@ -1,32 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Modal window</title>
-  </head>
-  <body>
-    <button class="show-modal">Show modal 1</button>
-    <button class="show-modal">Show modal 2</button>
-    <button class="show-modal">Show modal 3</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepalCuts - Professional Barber Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cut"></i>
+                <span>NepalCuts</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#booking" class="nav-link">Book Now</a></li>
+                <li><a href="#queue" class="nav-link">Queue Status</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <div class="modal hidden">
-      <button class="close-modal">&times;</button>
-      <h1>I'm a modal window 😍</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Professional Barber Services Across Nepal</h1>
+            <p>Experience premium haircuts at our salon or enjoy the convenience of home service</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showBookingModal()">
+                    <i class="fas fa-calendar-plus"></i> Book Appointment
+                </button>
+                <button class="btn btn-secondary" onclick="showQueueStatus()">
+                    <i class="fas fa-users"></i> Check Queue
+                </button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <h3 id="currentQueue">0</h3>
+                <p>In Queue</p>
+            </div>
+            <div class="stat">
+                <h3 id="avgWaitTime">15</h3>
+                <p>Avg Wait (min)</p>
+            </div>
+            <div class="stat">
+                <h3>7+</h3>
+                <p>Cities Served</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Classic Haircut</h3>
+                    <p>Professional haircuts with traditional and modern styles</p>
+                    <span class="price">Rs. 500</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Beard Trim</h3>
+                    <p>Expert beard styling and grooming services</p>
+                    <span class="price">Rs. 300</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home Service</h3>
+                    <p>Premium haircut service at your doorstep</p>
+                    <span class="price">Rs. 800</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Hair Wash & Style</h3>
+                    <p>Complete hair care with professional styling</p>
+                    <span class="price">Rs. 400</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <h2>Book Your Appointment</h2>
+            <div class="booking-options">
+                <div class="booking-card" onclick="selectBookingType('salon')">
+                    <div class="booking-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Salon Visit</h3>
+                    <p>Visit our professional salon</p>
+                </div>
+                <div class="booking-card" onclick="selectBookingType('home')">
+                    <div class="booking-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home Service</h3>
+                    <p>We come to your location</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Queue Status Section -->
+    <section id="queue" class="queue-section">
+        <div class="container">
+            <h2>Current Queue Status</h2>
+            <div class="queue-info">
+                <div class="queue-card">
+                    <h3>People in Queue</h3>
+                    <div class="queue-number" id="queueCount">3</div>
+                    <p>Estimated wait: <span id="estimatedWait">45 minutes</span></p>
+                </div>
+                <div class="queue-list">
+                    <h4>Current Queue</h4>
+                    <div id="queueList">
+                        <div class="queue-item">
+                            <span class="queue-position">1</span>
+                            <span class="queue-name">Being Served</span>
+                            <span class="queue-service">Haircut + Beard</span>
+                        </div>
+                        <div class="queue-item">
+                            <span class="queue-position">2</span>
+                            <span class="queue-name">Ram B.</span>
+                            <span class="queue-service">Haircut</span>
+                        </div>
+                        <div class="queue-item">
+                            <span class="queue-position">3</span>
+                            <span class="queue-name">Shyam K.</span>
+                            <span class="queue-service">Beard Trim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <h2 id="modalTitle">Book Appointment</h2>
+            
+            <form id="bookingForm">
+                <div class="form-step" id="step1">
+                    <h3>Select City</h3>
+                    <div class="city-grid">
+                        <div class="city-card" onclick="selectCity('kathmandu')">
+                            <i class="fas fa-city"></i>
+                            <span>Kathmandu</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('pokhara')">
+                            <i class="fas fa-mountain"></i>
+                            <span>Pokhara</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('chitwan')">
+                            <i class="fas fa-tree"></i>
+                            <span>Chitwan</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('butwal')">
+                            <i class="fas fa-industry"></i>
+                            <span>Butwal</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('biratnagar')">
+                            <i class="fas fa-building"></i>
+                            <span>Biratnagar</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('dharan')">
+                            <i class="fas fa-hospital"></i>
+                            <span>Dharan</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('janakpur')">
+                            <i class="fas fa-place-of-worship"></i>
+                            <span>Janakpur</span>
+                        </div>
+                        <div class="city-card" onclick="selectCity('nepalgunj')">
+                            <i class="fas fa-plane"></i>
+                            <span>Nepalgunj</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step hidden" id="step2">
+                    <h3>Select Services</h3>
+                    <div class="service-selection">
+                        <label class="service-option">
+                            <input type="checkbox" value="haircut" data-price="500">
+                            <span class="checkmark"></span>
+                            <div class="service-details">
+                                <span class="service-name">Haircut</span>
+                                <span class="service-price">Rs. 500</span>
+                            </div>
+                        </label>
+                        <label class="service-option">
+                            <input type="checkbox" value="beard" data-price="300">
+                            <span class="checkmark"></span>
+                            <div class="service-details">
+                                <span class="service-name">Beard Trim</span>
+                                <span class="service-price">Rs. 300</span>
+                            </div>
+                        </label>
+                        <label class="service-option">
+                            <input type="checkbox" value="wash" data-price="400">
+                            <span class="checkmark"></span>
+                            <div class="service-details">
+                                <span class="service-name">Hair Wash & Style</span>
+                                <span class="service-price">Rs. 400</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="home-service-option" id="homeServiceOption" style="display: none;">
+                        <label class="service-option">
+                            <input type="checkbox" id="homeServiceCheckbox" data-price="300">
+                            <span class="checkmark"></span>
+                            <div class="service-details">
+                                <span class="service-name">Home Service Fee</span>
+                                <span class="service-price">Rs. 300</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-step hidden" id="step3">
+                    <h3>Select Date & Time</h3>
+                    <div class="datetime-selection">
+                        <div class="form-group">
+                            <label for="appointmentDate">Date:</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentTime">Time:</label>
+                            <select id="appointmentTime" required>
+                                <option value="">Select time...</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step hidden" id="step4">
+                    <h3>Contact Information</h3>
+                    <div class="form-group">
+                        <label for="customerName">Full Name:</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number:</label>
+                        <input type="tel" id="customerPhone" required>
+                    </div>
+                    <div class="form-group" id="addressGroup" style="display: none;">
+                        <label for="customerAddress">Address:</label>
+                        <textarea id="customerAddress" rows="3" placeholder="Enter your complete address for home service"></textarea>
+                    </div>
+                    <div class="total-cost">
+                        <h4>Total Cost: Rs. <span id="totalCost">0</span></h4>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" onclick="previousStep()" style="display: none;">Previous</button>
+                    <button type="button" id="nextBtn" onclick="nextStep()">Next</button>
+                    <button type="submit" id="submitBtn" style="display: none;">Book Appointment</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="overlay hidden"></div>
+
+    <!-- Overlay -->
+    <div class="overlay hidden" id="overlay"></div>
+
+    <!-- AI Chat Button -->
+    <div class="ai-chat-button" onclick="toggleAIChat()">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div id="aiChatModal" class="ai-chat-modal hidden">
+        <div class="ai-chat-header">
+            <h3><i class="fas fa-robot"></i> NepalCuts AI Assistant</h3>
+            <button onclick="toggleAIChat()" class="close-chat">&times;</button>
+        </div>
+        <div class="ai-chat-messages" id="chatMessages">
+            <div class="ai-message">
+                <p>Hello! I'm your NepalCuts AI assistant. I can help you with:</p>
+                <ul>
+                    <li>Booking appointments</li>
+                    <li>Service information</li>
+                    <li>Queue status</li>
+                    <li>Pricing details</li>
+                    <li>Location information</li>
+                </ul>
+                <p>How can I help you today?</p>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal hidden">
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Booking Confirmed!</h2>
+            <p>Your appointment has been successfully booked.</p>
+            <div class="booking-details" id="bookingDetails"></div>
+            <button class="btn btn-primary" onclick="closeSuccessModal()">Done</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
